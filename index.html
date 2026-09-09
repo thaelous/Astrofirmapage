@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astrofirma Sonora | Firma Acústica Personalizada</title>
+  <title>Astrofirma Sonora | Exploración Acústica & Geometría Matemática</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #040711;
-      --card-bg: rgba(11, 19, 36, 0.72);
+      --bg-color: #050811;
+      --card-bg: rgba(13, 22, 41, 0.75);
       --border-glow: rgba(0, 242, 254, 0.22);
       --cyan-glow: #00f2fe;
-      --gold-accent: #e6c36d;
+      --cyan-soft: rgba(0, 242, 254, 0.12);
+      --gold-accent: #e5c158;
       --text-main: #f1f5f9;
       --text-muted: #94a3b8;
     }
@@ -31,9 +32,8 @@
       line-height: 1.7;
       overflow-x: hidden;
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 85% 65%, rgba(230, 195, 109, 0.06) 0%, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(79, 172, 254, 0.05) 0%, transparent 40%);
+        radial-gradient(circle at 10% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 70%, rgba(229, 193, 88, 0.05) 0%, transparent 50%);
     }
 
     h1, h2, h3, h4 {
@@ -42,131 +42,132 @@
     }
 
     .container {
-      max-width: 1120px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* Navbar */
+    /* Header & Branding */
     header {
-      padding: 22px 0;
+      padding: 30px 0 15px;
+      text-align: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(4, 7, 17, 0.85);
+      background: rgba(5, 8, 17, 0.95);
     }
 
-    .nav-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.25rem;
+    .brand-title {
+      font-size: 1.8rem;
       font-weight: 700;
       color: var(--cyan-glow);
       text-transform: uppercase;
-      letter-spacing: 2.5px;
+      letter-spacing: 3px;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 13px 30px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-      color: #030712;
-      box-shadow: 0 0 24px rgba(0, 242, 254, 0.35);
-      border: none;
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 0 35px rgba(0, 242, 254, 0.65);
-      transform: translateY(-2px);
-    }
-
-    /* Hero */
-    .hero {
-      padding: 110px 0 70px;
-      text-align: center;
-      position: relative;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 7px 18px;
-      background: rgba(0, 242, 254, 0.08);
-      border: 1px solid var(--border-glow);
-      border-radius: 20px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--cyan-glow);
-      margin-bottom: 24px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.3rem, 5.5vw, 4rem);
-      line-height: 1.2;
-      margin-bottom: 24px;
-      background: linear-gradient(180deg, #ffffff 40%, #a5b4fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      max-width: 720px;
-      margin: 0 auto 38px;
-      font-size: 1.15rem;
+    .brand-tagline {
+      font-size: 0.9rem;
       color: var(--text-muted);
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    /* Tab Navigation */
+    .nav-tabs-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5, 8, 17, 0.92);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+      padding: 12px 0;
+    }
+
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--cyan-glow);
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      background: var(--cyan-soft);
+      border-color: var(--cyan-glow);
+      color: var(--cyan-glow);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+    }
+
+    /* Tab Panels */
+    .tab-content {
+      display: none;
+      padding: 60px 0 100px;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography & Sections */
+    .section-header {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1.05rem;
       font-weight: 300;
     }
 
-    /* Grids & Cards */
+    /* Cards & Grids */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 28px;
-      margin: 40px 0;
+      gap: 26px;
     }
 
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border-glow);
       border-radius: 18px;
-      padding: 34px;
-      backdrop-filter: blur(14px);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .card:hover {
-      border-color: var(--cyan-glow);
-      transform: translateY(-4px);
+      padding: 30px;
+      backdrop-filter: blur(10px);
     }
 
     .card h3 {
       color: var(--cyan-glow);
-      margin-bottom: 14px;
-      font-size: 1.3rem;
-    }
-
-    .card h4 {
-      color: var(--gold-accent);
-      margin-bottom: 8px;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
     }
 
     .card p {
@@ -174,104 +175,133 @@
       font-size: 0.95rem;
     }
 
-    /* Section Styling */
-    section {
-      padding: 90px 0;
+    /* Narrative Story Layout */
+    .story-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border-glow);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 30px;
     }
 
-    .section-title {
-      text-align: center;
+    .story-block h3 {
+      color: var(--gold-accent);
+      font-size: 1.35rem;
       margin-bottom: 16px;
-      font-size: 2.3rem;
     }
 
-    .section-subtitle {
-      text-align: center;
-      color: var(--text-muted);
-      max-width: 680px;
-      margin: 0 auto 50px;
-      font-weight: 300;
-      font-size: 1.05rem;
+    .story-block p {
+      color: #cbd5e1;
+      margin-bottom: 16px;
+      font-size: 1rem;
     }
 
-    /* Quote / Philosophy Box */
-    .quote-box {
-      border-left: 3px solid var(--gold-accent);
-      background: rgba(230, 195, 109, 0.04);
-      padding: 24px 30px;
-      border-radius: 0 16px 16px 0;
-      margin: 40px auto;
-      max-width: 850px;
+    .quote-highlight {
+      border-left: 3px solid var(--cyan-glow);
+      padding: 16px 24px;
+      margin: 25px 0;
+      background: rgba(0, 242, 254, 0.04);
       font-style: italic;
       color: #e2e8f0;
     }
 
-    /* Formula showcase */
-    .formula-box {
-      background: rgba(0, 0, 0, 0.45);
+    /* Math Box */
+    .math-pill {
+      background: rgba(0, 0, 0, 0.5);
       border: 1px dashed var(--border-glow);
-      border-radius: 12px;
-      padding: 18px;
-      font-family: 'Courier New', Courier, monospace;
+      border-radius: 10px;
+      padding: 14px;
+      font-family: monospace;
       color: var(--gold-accent);
-      margin: 18px 0;
-      font-size: 0.9rem;
       text-align: center;
-      letter-spacing: 1px;
+      margin: 14px 0;
+      font-size: 0.9rem;
     }
 
-    /* Table */
-    .table-container {
+    /* Audio Player Card */
+    .audio-card {
       background: var(--card-bg);
       border: 1px solid var(--border-glow);
       border-radius: 18px;
-      overflow-x: auto;
-      margin: 40px 0;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th, td {
-      padding: 20px 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    th {
-      background: rgba(0, 242, 254, 0.08);
-      color: var(--cyan-glow);
-      font-family: 'Cinzel', serif;
-    }
-
-    /* CTA Card */
-    .cta-card {
-      background: linear-gradient(180deg, rgba(14, 23, 44, 0.95) 0%, rgba(4, 7, 17, 0.95) 100%);
-      border: 1px solid var(--cyan-glow);
-      border-radius: 24px;
-      padding: 65px 40px;
-      text-align: center;
-      box-shadow: 0 0 60px rgba(0, 242, 254, 0.18);
-    }
-
-    .price {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin: 22px 0 8px;
-      font-family: 'Cinzel', serif;
-    }
-
-    .price-sub {
+    .audio-badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 4px 12px;
+      border-radius: 12px;
+      background: rgba(229, 193, 88, 0.12);
+      border: 1px solid rgba(229, 193, 88, 0.3);
       color: var(--gold-accent);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .audio-card h3 {
+      color: #ffffff;
+      margin-bottom: 8px;
+      font-size: 1.25rem;
+    }
+
+    .audio-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    audio {
+      width: 100%;
+      height: 40px;
+      border-radius: 20px;
+      outline: none;
+    }
+
+    /* Button Styling */
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 30px;
+      font-weight: 600;
       font-size: 0.95rem;
-      margin-bottom: 32px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      color: #030712;
+      border: none;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 35px rgba(0, 242, 254, 0.65);
+      transform: translateY(-2px);
+    }
+
+    /* Disclaimer box */
+    .disclaimer-box {
+      margin-top: 40px;
+      padding: 20px 25px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.85rem;
+      color: #64748b;
+      text-align: center;
     }
 
     footer {
-      padding: 45px 0;
+      padding: 40px 0;
       text-align: center;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       color: var(--text-muted);
@@ -281,153 +311,182 @@
 </head>
 <body>
 
-  <!-- Navbar -->
+  <!-- Header -->
   <header>
-    <div class="container nav-flex">
-      <div class="logo">Astrofirma Sonora</div>
-      <a href="https://buy.stripe.com/cNidRb4CJ0sPdL960C8Ra00" class="btn btn-primary">Obtener Mi Firma</a>
+    <div class="container">
+      <div class="brand-title">Astrofirma Sonora</div>
+      <div class="brand-tagline">Laboratorio de Geometría Acústica y Resonancia Armónica</div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero container">
-    <div class="badge">Síntesis Acústica & Geometría Sagrada</div>
-    <h1>El Sonido Secreto<br>Inscrito en tu Existencia</h1>
-    <p>Desde los templos del Himalaya hasta la física de ondas contemporánea: decodificamos tu nombre, tu fecha natal y tu decreto en una arquitectura acústica única calculada en estricta proporción áurea.</p>
-    <a href="https://buy.stripe.com/cNidRb4CJ0sPdL960C8Ra00" class="btn btn-primary" style="font-size: 1.1rem; padding: 18px 40px;">Sintonizar Mi Firma Sonora — $350 MXN</a>
-  </section>
+  <!-- Sticky Tabs Navigation -->
+  <nav class="nav-tabs-wrapper">
+    <div class="container">
+      <div class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab('concepto')">1. ¿Qué es una Astrofirma?</button>
+        <button class="tab-btn" onclick="openTab('historia')">2. Crónica & Origen</button>
+        <button class="tab-btn" onclick="openTab('ciencia')">3. Fundamento Matemático</button>
+        <button class="tab-btn" onclick="openTab('ejemplos')">4. Audios de Prueba</button>
+        <button class="tab-btn" onclick="openTab('adquisicion')">5. Diseño Personalizado</button>
+      </div>
+    </div>
+  </nav>
 
-  <!-- SECCIÓN HISTÓRICA / TRADICIÓN SAGRADA -->
-  <section class="container" style="background: rgba(255, 255, 255, 0.015); border-radius: 24px; padding: 70px 40px; border: 1px solid rgba(255, 255, 255, 0.03);">
-    <h2 class="section-title">El Linaje Oculto de la Resonancia</h2>
-    <p class="section-subtitle">Las civilizaciones que comprendieron la arquitectura del cosmos sabían que el sonido no es entretenimiento: es la matriz que ordena la materia.</p>
+  <!-- SECCIÓN 1: ¿QUÉ ES UNA ASTROFIRMA? -->
+  <section id="concepto" class="tab-content active container">
+    <div class="section-header">
+      <h2>La Identidad Transformada en Frecuencia</h2>
+      <p>Una traducción acústica rigurosa donde las coordenadas temporales y el lenguaje consciente se unifican mediante proporciones armónicas.</p>
+    </div>
 
     <div class="grid">
       <div class="card">
-        <h4>Tradición Védica e Himaláyica</h4>
-        <h3>Los Cuencos de Siete Metales</h3>
-        <p>Los lamas y forjadores tibetanos no buscaban una sola nota pura, sino una aleación astrológica (oro, plata, hierro, mercurio, estaño, cobre y plomo) que generaba <em>batimentos armónicos microtonales</em>. Esos intervalos pulsantes inducían estados de coherencia cerebral profunda y sincronización con los ritmos estacionales de la Tierra.</p>
+        <h3>Estructura Personalizada</h3>
+        <p>Una Astrofirma Sonora no es una canción convencional ni un bucle repetitivo de ruido blanco. Es una matriz sonora construida específicamente a partir de los datos que definen un momento y un propósito: tu nombre, tu origen temporal y una afirmación directriz.</p>
       </div>
 
       <div class="card">
-        <h4>Escuela Pitagórica (Grecia Antigua)</h4>
-        <h3>La Armonía de las Esferas</h3>
-        <p>Pitágoras demostró en el monocordio que las distancias celestes y las proporciones musicales responden a la misma ley geométrica. Cada astro, cada ciclo temporal y cada individuo posee una firma vibratoria singular; no escucharla no significa que esté en silencio, sino que hemos olvidado cómo sintonizarla.</p>
+        <h3>Beneficios en la Práctica Cotidiana</h3>
+        <p>Al no tener melodías que estimulen el análisis verbal del cerebro, la pieza actúa como un <strong>ancla acústica</strong>: facilita la concentración profunda en el trabajo intelectual, acompaña la meditación consciente y establece una atmósfera de neutralidad sensorial.</p>
       </div>
 
       <div class="card">
-        <h4>Egipto & La Ciencia Hermética</h4>
-        <h3>El Verbo como Geometría Viva</h3>
-        <p>En las cámaras resonantes de Karnak y Guiza, los sacerdotes entonaban vocales sagradas orientadas a alterar el estado de conciencia mediante cimática acústica. Todo nombre pronunciado con intención consciente es una onda portadora que despliega energía matemática en el espacio.</p>
+        <h3>Cero Distorsión Aleatoria</h3>
+        <p>A diferencia de los audios genéricos masivos, cada intervalo y sobretono responde a razones geométricas estables (como la proporción áurea), evitando disonancias ásperas que generen fatiga auditiva o tensión.</p>
       </div>
     </div>
 
-    <div class="quote-box">
-      «Si quieres encontrar los secretos del universo, piensa en términos de energía, frecuencia y vibración.»  
-      <span style="display:block; margin-top:8px; font-weight:600; color:var(--cyan-glow);">— Nikola Tesla</span>
+    <div class="disclaimer-box">
+      <strong>Aviso de enfoque responsable:</strong> Las firmas sonoras son herramientas de diseño acústico, enfoque mental y exploración estética personal. No sustituyen tratamientos médicos, diagnósticos clínicos ni terapias psicológicas.
     </div>
   </section>
 
-  <!-- Fundamento Físico & Matemático -->
-  <section class="container">
-    <h2 class="section-title">De la Sabiduría Antigua al Rigor Matemático</h2>
-    <p class="section-subtitle">No utilizamos tonos arbitrarios ni música pregrabada de fondo. Cada frecuencia se articula mediante física ondulatoria precisa.</p>
+  <!-- SECCIÓN 2: HISTORIA & CRÓNICA DE ORIGEN -->
+  <section id="historia" class="tab-content container">
+    <div class="section-header">
+      <h2>El Origen: De la Cimática a la Síntesis Digital</h2>
+      <p>Cómo la fascinación por los patrones invisibles del sonido dio origen a este proyecto.</p>
+    </div>
+
+    <div class="story-block">
+      <h3>El Encuentro con el Patrón Invisible</h3>
+      <p>La inquietud detrás de Astrofirma Sonora comenzó hace años observando un experimento clásico de cimática: una placa de metal cubierta de arena fina conectada a un oscilador de frecuencias. A ciertas notas exactas, el caos de arena se organizaba instantáneamente en mandalas geométricos simétricos perfectos; pero al variar medio hercio, la forma colapsaba en desorden.</p>
+      <p>La pregunta fue inevitable: si la materia inerte responde con tal precisión geométrica a la vibración, ¿qué estructura subyace cuando combinamos el lenguaje humano con el paso del tiempo?</p>
+
+      <div class="quote-highlight">
+        «La geometría de las formas visibles es únicamente sonido coagulado en el tiempo.»
+      </div>
+    </div>
+
+    <div class="story-block">
+      <h3>La Convergencia de Tradiciones</h3>
+      <p>La investigación nos llevó a rastrear cómo distintas culturas resolvieron este enigma antes de la era de la computación:</p>
+      <p>• <strong>La Escuela Pitagórica:</strong> En el siglo VI a.C., Pitágoras descubrió en Grecia que las consonancias musicales respondían a fracciones de números enteros (1:2 para la octava, 2:3 para la quinta). Postuló que el cosmos entero funcionaba como una inmensa escala armónica (la <em>Harmonía Mundi</em>).</p>
+      <p>• <strong>Los Forjadores del Himalaya:</strong> En los monasterios tibetanos, los cuencos tradicionales no eran instrumentos melódicos, sino aleaciones calculadas para generar <em>batimentos microtonales</em> (pequeñas fluctuaciones ondulatorias) diseñadas para facilitar el cese del parloteo mental.</p>
+      <p>• <strong>La Fisiología Moderna:</strong> A mediados del siglo XX, los estudios sobre resonancias electromagnéticas planetarias confirmaron que nuestro entorno natural oscila de forma medible y continua.</p>
+      <p>Astrofirma Sonora nació al unir estos tres vértices: tomar la reverencia ancestral por el sonido y articularla con el rigor del cálculo digital contemporáneo.</p>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: FUNDAMENTO MATEMÁTICO -->
+  <section id="ciencia" class="tab-content container">
+    <div class="section-header">
+      <h2>Arquitectura Física y Matemática</h2>
+      <p>El sonido es física; su armonía es proporción medible.</p>
+    </div>
 
     <div class="grid">
       <div class="card">
-        <h3>La Resonancia Schumann (7.83 Hz)</h3>
-        <p>El latido electromagnético natural entre la superficie del planeta y la ionosfera. Funciona como el ancla biológica fundamental donde enraizamos la frecuencia base de tu diseño acústico.</p>
+        <h3>1. Anclaje en Resonancia Schumann</h3>
+        <p>El espectro fundamental de nuestras piezas utiliza armónicos derivados de los 7.83 Hz, la oscilación electromagnética natural de la cavidad Tierra-ionosfera, funcionando como base de sintonización.</p>
+        <div class="math-pill">f<sub>n</sub> = 7.83 × n (Hz)</div>
       </div>
+
       <div class="card">
-        <h3>La Proporción Áurea (Φ = 1.618)</h3>
-        <p>La constante universal de crecimiento que gobierna las galaxias, el ADN y los caracoles de mar. La aplicamos para calcular la distancia exacta entre armónicos, evitando cualquier choque disonante.</p>
+        <h3>2. Intervalos en Proporción Áurea (Φ)</h3>
+        <p>Para evitar las escalas comerciales templadas estándar, los sobretonos se espacian según la proporción dorada (1.618033...), emulando los patrones de distribución presentes en la naturaleza.</p>
+        <div class="math-pill">Δf = f<sub>base</sub> × Φ<sup>k</sup></div>
       </div>
+
       <div class="card">
-        <h3>Transformadas y Series Armónicas</h3>
-        <p>Descomponemos tus datos en oscilaciones sinusoidales elementales que se entrelazan sin saturación digital, generando un espectro limpio y envolvente.</p>
+        <h3>3. Series y Modulación Armónica</h3>
+        <p>Cada frase o decreto define coeficientes dinámicos de amplitud y fase, generando una síntesis por capas superpuestas limpias, libres de aliasing o saturación forzada.</p>
+        <div class="math-pill">S(t) = ∑ A<sub>k</sub> sin(2π f<sub>k</sub> t + θ<sub>k</sub>)</div>
       </div>
     </div>
   </section>
 
-  <!-- El Algoritmo -->
-  <section class="container" style="background: rgba(11, 19, 36, 0.4); border-radius: 24px; padding: 60px 40px; border: 1px solid var(--border-glow);">
-    <h2 class="section-title">El Proceso de Decodificación</h2>
-    <p class="section-subtitle">Cómo traducimos tus coordenadas biográficas e intenciones en una matriz acústica viva:</p>
+  <!-- SECCIÓN 4: AUDIOS DE EJEMPLO GENERALES -->
+  <section id="ejemplos" class="tab-content container">
+    <div class="section-header">
+      <h2>Exploraciones Acústicas Colectivas</h2>
+      <p>Escucha tres estructuras no personalizadas basadas en decretos arquetípicos universales. Te recomendamos utilizar auriculares para percibir la relación entre canales.</p>
+    </div>
 
     <div class="grid">
-      <div class="card">
-        <h3>1. Vectorización de Identidad</h3>
-        <p>Cada carácter de tu nombre y decreto se pondera analíticamente en relación con su posición e impulso energético en la frase.</p>
-        <div class="formula-box">V<sub>n</sub> = ∑ (P<sub>i</sub> × W<sub>i</sub>) mod F<sub>base</sub></div>
+      <!-- Ejemplo 1 -->
+      <div class="audio-card">
+        <div>
+          <span class="audio-badge">Frecuencia Base: Enraizamiento</span>
+          <h3>Tierra & Estabilidad</h3>
+          <p>Estructura diseñada bajo una base armónica baja (isocrónica suave), orientada a calmar la sobrecarga mental tras jornadas extensas y promover el asentamiento físico.</p>
+        </div>
+        <audio controls preload="none">
+          <source src="https://actions.google.com/sounds/v1/ambiences/humming_drone.ogg" type="audio/ogg">
+          Tu navegador no soporta el elemento de audio.
+        </audio>
       </div>
 
-      <div class="card">
-        <h3>2. Anclaje Crono-Cosmológico</h3>
-        <p>La fecha natal determina el eje espectral fundamental, integrando la posición cíclica en una frecuencia base inconfundible.</p>
-        <div class="formula-box">F<sub>fund</sub> = (T<sub>epoch</sub> × Φ) / λ<sub>ref</sub></div>
+      <!-- Ejemplo 2 -->
+      <div class="audio-card">
+        <div>
+          <span class="audio-badge">Frecuencia Base: Concentración</span>
+          <h3>Claridad & Enfoque</h3>
+          <p>Articulada sobre proporciones matemáticas que minimizan la fatiga de atención. Ideal como entorno sonoro de fondo durante lectura, escritura o programación.</p>
+        </div>
+        <audio controls preload="none">
+          <source src="https://actions.google.com/sounds/v1/ambiences/light_drone.ogg" type="audio/ogg">
+          Tu navegador no soporta el elemento de audio.
+        </audio>
       </div>
 
-      <div class="card">
-        <h3>3. Modulación Dinámica</h3>
-        <p>Tu intención consciente modula la envolvente de ataque, decaimiento y resonancia, esculpiendo los armónicos en capas estables.</p>
-        <div class="formula-box">S(t) = A(t) × sin(2π F<sub>fund</sub> t + θ)</div>
+      <!-- Ejemplo 3 -->
+      <div class="audio-card">
+        <div>
+          <span class="audio-badge">Frecuencia Base: Expansión</span>
+          <h3>Respiración & Silencio</h3>
+          <p>Ondas moduladas con decaimiento lento que imitan el ritmo de la respiración profunda, facilitando momentos de pausa o introspección consciente.</p>
+        </div>
+        <audio controls preload="none">
+          <source src="https://actions.google.com/sounds/v1/ambiences/meditation_bell.ogg" type="audio/ogg">
+          Tu navegador no soporta el elemento de audio.
+        </audio>
       </div>
     </div>
   </section>
 
-  <!-- Tabla Comparativa -->
-  <section class="container">
-    <h2 class="section-title">Una Distinción Fundamental</h2>
-    <p class="section-subtitle">Por qué una firma calculada tiene una profundidad que ningún audio estándar puede replicar.</p>
-
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Parámetro</th>
-            <th>Audios Genéricos de Internet</th>
-            <th>Astrofirma Sonora Personalizada</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Origen</strong></td>
-            <td>Pistas masivas repetidas para millones de oyentes</td>
-            <td>Síntesis única articulada a partir de tu nombre, fecha y decreto</td>
-          </tr>
-          <tr>
-            <td><strong>Fidelidad Técnica</strong></td>
-            <td>Formatos fuertemente comprimidos (pérdida de armónicos sutiles)</td>
-            <td>Master WAV 24-bit sin pérdida + MP3 de alta resolución a 320 kbps</td>
-          </tr>
-          <tr>
-            <td><strong>Afinación</strong></td>
-            <td>Tonos estáticos sintetizados sin base matemática estricta</td>
-            <td>Afinación microtonal calibrada en proporción áurea y resonancia terrestre</td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- SECCIÓN 5: OBTENER TU PIEZA PERSONALIZADA -->
+  <section id="adquisicion" class="tab-content container">
+    <div class="section-header">
+      <h2>Cálculo y Síntesis de tu Firma Única</h2>
+      <p>Si deseas traducir tus propios datos biográficos y tu intención en una obra acústica exclusiva.</p>
     </div>
-  </section>
 
-  <!-- CTA / Compra -->
-  <section class="container">
-    <div class="cta-card">
-      <div class="badge">Entrega Digital Confidencial</div>
-      <h2>Materializa tu Firma Sonora</h2>
-      <p style="color: var(--text-muted); max-width: 580px; margin: 0 auto;">
-        Al completar tu pago seguro a través de Stripe, serás redirigido de inmediato al formulario privado para ingresar tu nombre, fecha de cálculo y decreto consciente.
+    <div style="max-width: 680px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border-glow); border-radius: 24px; padding: 45px 35px; text-align: center;">
+      <h3 style="font-size: 1.6rem; color: #fff; margin-bottom: 15px;">Diseño Acústico Individual</h3>
+      <p style="color: var(--text-muted); margin-bottom: 25px;">
+        Al encargar tu firma, procesamos tu nombre completo, fecha natal y decreto personal para sintetizar una pieza acústica intransferible en alta fidelidad.
       </p>
 
-      <div class="price">$350 MXN</div>
-      <div class="price-sub">Pago único • Entrega digital en 24 a 48 horas hábiles</div>
+      <div style="font-size: 2.5rem; font-family: 'Cinzel', serif; font-weight: 700; color: #fff; margin-bottom: 5px;">$350 MXN</div>
+      <p style="color: var(--gold-accent); font-size: 0.9rem; margin-bottom: 30px;">Cálculo matemático único • Entrega digital en 24 a 48 h</p>
 
-      <a href="https://buy.stripe.com/cNidRb4CJ0sPdL960C8Ra00" class="btn btn-primary" style="font-size: 1.15rem; padding: 18px 44px;">
-        Iniciar Mi Proceso en Stripe →
+      <a href="https://buy.stripe.com/cNidRb4CJ0sPdL960C8Ra00" class="btn btn-primary" style="font-size: 1.05rem; padding: 16px 36px;">
+        Solicitar Mi Firma Sonora en Stripe →
       </a>
 
-      <p style="color: #64748b; font-size: 0.82rem; margin-top: 26px;">
-        🔒 Procesamiento cifrado vía Stripe. Tu información e intención son estrictamente confidenciales.
+      <p style="color: #64748b; font-size: 0.8rem; margin-top: 25px; line-height: 1.5;">
+        💳 Al completar tu aportación en Stripe, la pantalla te llevará de inmediato a nuestro formulario seguro de Google para registrar tus datos confidenciales.
       </p>
     </div>
   </section>
@@ -435,10 +494,29 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>Astrofirma Sonora © 2026 — Geometría Acústica y Decodificación Armónica.</p>
-      <p style="margin-top: 8px; color: #475569;">Contacto: astrofirmasonora@gmail.com</p>
+      <p>Astrofirma Sonora © 2026 — Investigación en Geometría y Síntesis Acústica.</p>
+      <p style="margin-top: 6px; color: #475569;">Contacto: astrofirmasonora@gmail.com</p>
     </div>
   </footer>
 
+  <!-- Tab Controller Script -->
+  <script>
+    function openTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+
+      const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabId));
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+      }
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
