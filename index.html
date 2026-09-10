@@ -539,7 +539,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 4: AUDIOS DE EJEMPLO CON VISUALIZADORES REACTIVOS -->
+  <!-- SECCIÓN 4: AUDIOS DE EJEMPLO CON VISUALIZADORES REACTIVOS PERSONALIZADOS -->
   <section id="ejemplos" class="tab-content container">
     <div class="section-header">
       <h2>Exploraciones Acústicas Colectivas</h2>
@@ -547,7 +547,7 @@
     </div>
 
     <div class="grid">
-      <!-- Pista 1 -->
+      <!-- Pista 1: Tierra & Serenidad -->
       <div class="audio-card">
         <div>
           <span class="audio-badge">Arquetipo: Enraizamiento</span>
@@ -557,13 +557,13 @@
         <div class="visualizer-box">
           <canvas id="viz-1"></canvas>
         </div>
-        <audio id="audio-1" controls preload="metadata" data-viz="viz-1">
+        <audio id="audio-1" controls preload="metadata" data-viz="viz-1" data-type="tierra">
           <source src="audio/tierra-serenidad.mp3" type="audio/mpeg">
           Tu navegador no soporta el elemento de audio.
         </audio>
       </div>
 
-      <!-- Pista 2 -->
+      <!-- Pista 2: Enfoque & Geometría -->
       <div class="audio-card">
         <div>
           <span class="audio-badge">Arquetipo: Claridad</span>
@@ -573,13 +573,13 @@
         <div class="visualizer-box">
           <canvas id="viz-2"></canvas>
         </div>
-        <audio id="audio-2" controls preload="metadata" data-viz="viz-2">
+        <audio id="audio-2" controls preload="metadata" data-viz="viz-2" data-type="enfoque">
           <source src="audio/enfoque-geometria.mp3" type="audio/mpeg">
           Tu navegador no soporta el elemento de audio.
         </audio>
       </div>
 
-      <!-- Pista 3 -->
+      <!-- Pista 3: Respiración & Pausa -->
       <div class="audio-card">
         <div>
           <span class="audio-badge">Arquetipo: Calma</span>
@@ -589,7 +589,7 @@
         <div class="visualizer-box">
           <canvas id="viz-3"></canvas>
         </div>
-        <audio id="audio-3" controls preload="metadata" data-viz="viz-3">
+        <audio id="audio-3" controls preload="metadata" data-viz="viz-3" data-type="calma">
           <source src="audio/respiracion-pausa.mp3" type="audio/mpeg">
           Tu navegador no soporta el elemento de audio.
         </audio>
@@ -745,24 +745,25 @@
       drawWave();
     }
 
-    // 3. Sistema de Visualización Reactiva
+    // 3. Sistema de Visualización Reactiva Personalizada por Arquetipo
     const visualizerControllers = [];
 
     function setupVisualizers() {
       const audioElements = document.querySelectorAll('audio[data-viz]');
 
-      audioElements.forEach((audio, index) => {
+      audioElements.forEach((audio) => {
         const canvasId = audio.getAttribute('data-viz');
+        const type = audio.getAttribute('data-type');
         const vCanvas = document.getElementById(canvasId);
         if (!vCanvas) return;
         const vCtx = vCanvas.getContext('2d');
 
         const controller = {
           audio: audio,
+          type: type,
           canvas: vCanvas,
           ctx: vCtx,
-          phase: index * 1.5,
-          speed: 0.08 + (index * 0.02),
+          phase: 0,
           animId: null
         };
 
@@ -817,43 +818,107 @@
           return;
         }
 
-        const { ctx, canvas } = ctrl;
+        const { ctx, canvas, type } = ctrl;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Curva principal (Cian brillante)
-        ctx.beginPath();
-        ctx.strokeStyle = "#00f2fe";
-        ctx.lineWidth = 2.2;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "#00f2fe";
 
         const mid = canvas.height / 2;
         const width = canvas.width;
 
-        for (let x = 0; x <= width; x += 3) {
-          const envelope = Math.sin((x / width) * Math.PI); // Envolvente suave en los bordes
-          const y = mid + (Math.sin(x * 0.035 + ctrl.phase) * 14 + Math.cos(x * 0.018 - ctrl.phase * 1.618) * 7) * envelope;
-          if (x === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
+        if (type === 'tierra') {
+          // Pista 1: Tierra & Serenidad -> Onda baja, pesada, de oscilación pausada y armónico subgrave
+          ctrl.phase += 0.032;
+
+          ctx.beginPath();
+          ctx.strokeStyle = "#00f2fe";
+          ctx.lineWidth = 2.4;
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = "#00f2fe";
+          for (let x = 0; x <= width; x += 3) {
+            const env = Math.sin((x / width) * Math.PI);
+            const y = mid + (Math.sin(x * 0.012 + ctrl.phase) * 17 + Math.sin(x * 0.024 - ctrl.phase * 0.5) * 5) * env;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+
+          // Sub-onda de anclaje (Dorado)
+          ctx.beginPath();
+          ctx.strokeStyle = "rgba(229, 193, 88, 0.55)";
+          ctx.lineWidth = 1.4;
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = "#e5c158";
+          for (let x = 0; x <= width; x += 4) {
+            const env = Math.sin((x / width) * Math.PI);
+            const y = mid + (Math.sin(x * 0.007 + ctrl.phase * 0.6) * 11) * env;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+
+        } else if (type === 'enfoque') {
+          // Pista 2: Enfoque & Geometría -> Onda rápida, densa, vibración armónica cristalina
+          ctrl.phase += 0.095;
+
+          ctx.beginPath();
+          ctx.strokeStyle = "#00f2fe";
+          ctx.lineWidth = 2.0;
+          ctx.shadowBlur = 14;
+          ctx.shadowColor = "#00f2fe";
+          for (let x = 0; x <= width; x += 2) {
+            const env = Math.sin((x / width) * Math.PI);
+            const y = mid + (Math.sin(x * 0.048 + ctrl.phase) * 12 + Math.cos(x * 0.096 - ctrl.phase * 1.5) * 6) * env;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+
+          // Pulso geométrico de enfoque
+          ctx.beginPath();
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.6)";
+          ctx.lineWidth = 1.0;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = "#ffffff";
+          for (let x = 0; x <= width; x += 3) {
+            const env = Math.sin((x / width) * Math.PI);
+            const y = mid + (Math.sin(x * 0.075 + ctrl.phase * 1.2) * 5) * env;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+
+        } else if (type === 'calma') {
+          // Pista 3: Respiración & Pausa -> Proporción Áurea (1.618), ciclo de inhalación y exhalación
+          ctrl.phase += 0.045;
+          const breath = 1 + 0.35 * Math.sin(ctrl.phase * 0.4); // Ciclo de respiración continuo
+
+          ctx.beginPath();
+          ctx.strokeStyle = "rgba(229, 193, 88, 0.9)";
+          ctx.lineWidth = 2.2;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = "#e5c158";
+          for (let x = 0; x <= width; x += 3) {
+            const env = Math.sin((x / width) * Math.PI);
+            const y = mid + (Math.sin(x * 0.022 + ctrl.phase) * 15 * breath) * env;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+
+          // Envolvente áurea armónica (Cian etéreo)
+          ctx.beginPath();
+          ctx.strokeStyle = "rgba(0, 242, 254, 0.45)";
+          ctx.lineWidth = 1.3;
+          ctx.shadowBlur = 5;
+          ctx.shadowColor = "#00f2fe";
+          for (let x = 0; x <= width; x += 3) {
+            const env = Math.sin((x / width) * Math.PI);
+            const y = mid + (Math.sin(x * 0.0355 - ctrl.phase * 1.618) * 8 * breath) * env;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
         }
-        ctx.stroke();
 
-        // Armónico secundario (Dorado sutil)
-        ctx.beginPath();
-        ctx.strokeStyle = "rgba(229, 193, 88, 0.4)";
-        ctx.lineWidth = 1.2;
-        ctx.shadowBlur = 4;
-        ctx.shadowColor = "#e5c158";
-
-        for (let x = 0; x <= width; x += 4) {
-          const envelope = Math.sin((x / width) * Math.PI);
-          const y = mid + (Math.sin(x * 0.05 - ctrl.phase * 0.7) * 9) * envelope;
-          if (x === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-
-        ctrl.phase += ctrl.speed;
         ctrl.animId = requestAnimationFrame(loop);
       }
 
