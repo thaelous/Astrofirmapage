@@ -28,7 +28,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             overflow-x: hidden;
             position: relative;
             padding: 20px;
@@ -49,8 +48,39 @@
             z-index: -1;
         }
 
+        /* Barra de navegación superior */
+        nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--panel-bg);
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--bg-color);
+            background: var(--cyan-glow);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
         .container {
-            max-width: 600px;
+            max-width: 650px;
             width: 100%;
             background: var(--panel-bg);
             border: 1px solid rgba(0, 240, 255, 0.2);
@@ -61,72 +91,72 @@
             backdrop-filter: blur(10px);
         }
 
-        .logo-container {
-            margin-bottom: 25px;
-        }
-
-        .logo-placeholder {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto;
-            border: 2px solid var(--gold-accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .logo-placeholder svg {
-            width: 40px;
-            height: 40px;
-            fill: var(--cyan-glow);
-        }
-
         h1 {
             font-size: 1.8rem;
             color: var(--cyan-glow);
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
         }
 
-        .subtitle {
-            font-size: 0.95rem;
-            color: var(--gold-accent);
-            letter-spacing: 1px;
+        .subtitle-section {
+            font-size: 0.9rem;
+            color: var(--text-muted);
             margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .card-inner {
+            background: rgba(3, 7, 18, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 30px 20px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: var(--gold-accent);
             text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
         }
 
         .description {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.6;
             color: var(--text-muted);
-            margin-bottom: 35px;
+            margin-bottom: 25px;
         }
 
         .price-tag {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--text-main);
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         .price-tag span {
             color: var(--cyan-glow);
         }
 
+        .meta-info {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
         .buy-button-container {
             display: flex;
             justify-content: center;
-            margin-top: 10px;
-            margin-bottom: 20px;
+            margin-top: 15px;
         }
 
         .footer {
-            margin-top: 40px;
+            margin-top: 30px;
             font-size: 0.8rem;
             color: var(--text-muted);
             letter-spacing: 1px;
@@ -137,35 +167,41 @@
 </head>
 <body>
 
+    <!-- Menú de Navegación Superior -->
+    <nav>
+        <a href="#inicio">Tor</a>
+        <a href="#origen">1. Crónica & Origen</a>
+        <a href="#fundamento">3. Fundamento Matemático</a>
+        <a href="#audios">4. Audios de Prueba</a>
+        <a href="#diseno" class="active">5. Diseño Personalizado</a>
+    </nav>
+
     <div class="container">
-        <div class="logo-container">
-            <div class="logo-placeholder">
-                <!-- Símbolo geométrico abstracto de laboratorio -->
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2L2 19h20L12 2zm0 3.84L18.8 17H5.2L12 5.84z"/>
-                    <circle cx="12" cy="13" r="3"/>
-                </svg>
+        <h1>Cálculo de tu Firma Singular</h1>
+        <div class="subtitle-section">Si deseas traducir tus coordenadas personales y tu afirmación en una pieza acústica exclusiva e irrepetible.</div>
+
+        <div class="card-inner">
+            <h2>Diseño Acústico Individual</h2>
+            <p class="description">
+                Procesamos tu nombre completo, fecha natal y decreto consciente a través de nuestro modelo de modulación para entregarte una sintonía sonora de alta pureza en formato de estudio.
+            </p>
+
+            <div class="price-tag">
+                <span>$19.00 USD</span>
             </div>
-        </div>
+            
+            <div class="meta-info">
+                Cálculo paramétrico único • Entrega digital en 24 a 48 h
+            </div>
 
-        <h1>Astrofirma Sonora</h1>
-        <div class="subtitle">Laboratorio de Síntesis Armónica</div>
-
-        <p class="description">
-            Adquiere tu <strong>Sintonía de Manifestación Personal</strong>. Cada pieza se genera mediante un cálculo armónico basado en tu nombre completo y fecha de nacimiento, transformando la intención y el decreto en una frecuencia única de enfoque y relajación en alta fidelidad.
-        </p>
-
-        <div class="price-tag">
-            Inversión: <span>$19.00 USD</span>
-        </div>
-
-        <!-- Botón de compra incrustado de Stripe -->
-        <div class="buy-button-container">
-            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1UECOpPAMQXjVcON7yxORFhi"
-              publishable-key="pk_live_51UDqlRPAMQXjVcONsLNGbegjUBai3bfew1LkYiRbrUwNir60MB8ZSVLBFmkRqRsKTNqL2PNZ4zlkddDgv4L33jcn00BJEH5Gy3">
-            </stripe-buy-button>
+            <!-- Botón de compra incrustado de Stripe -->
+            <div class="buy-button-container">
+                <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1UECOpPAMQXjVcON7yxORFhi"
+                  publishable-key="pk_live_51UDqlRPAMQXjVcONsLNGbegjUBai3bfew1LkYiRbrUwNir60MB8ZSVLBFmkRqRsKTNqL2PNZ4zlkddDgv4L33jcn00BJEH5Gy3">
+                </stripe-buy-button>
+            </div>
         </div>
 
         <div class="footer">
