@@ -50,7 +50,6 @@
       z-index: 2;
     }
 
-    /* Encabezado con ondas animadas */
     header {
       position: relative;
       padding: 45px 0 25px;
@@ -293,17 +292,15 @@
       flex-grow: 1;
     }
 
-    /* Caja para el visualizador dinámico */
     .visualizer-box {
       width: 100%;
-      height: 48px;
-      background: rgba(3, 7, 18, 0.75);
-      border: 1px solid rgba(0, 242, 254, 0.25);
+      height: 52px;
+      background: rgba(3, 7, 18, 0.85);
+      border: 1px solid rgba(0, 242, 254, 0.3);
       border-radius: 10px;
-      margin-bottom: 10px;
-      display: block;
+      margin-bottom: 12px;
       overflow: hidden;
-      box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.05);
+      box-shadow: inset 0 0 12px rgba(0, 242, 254, 0.1);
     }
 
     .visualizer-box canvas {
@@ -376,7 +373,6 @@
       <p>Una traducción acústica rigurosa donde las coordenadas temporales y el lenguaje consciente se unifican mediante proporciones armónicas.</p>
     </div>
 
-    <!-- GRÁFICO VECTORIAL SCHUMANN -->
     <div style="display:flex; justify-content:center; align-items:center; background:#050811; padding:30px 20px; border-radius:18px; border:1px solid rgba(0,242,254,0.2); margin-bottom:35px;">
       <svg viewBox="0 0 800 450" width="100%" height="100%" style="max-width:750px;" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -426,7 +422,6 @@
       </svg>
     </div>
 
-    <!-- BLOQUE DE SINGULARIDAD MATEMÁTICA / MÍSTICA -->
     <div class="highlight-card">
       <h3>El Principio de Singularidad Vibratoria</h3>
       <p>
@@ -484,7 +479,6 @@
       <p>• <strong>La Electrofísica Contemporánea:</strong> El descubrimiento de resonancias globales en la atmósfera terrestre terminó de cerrar el círculo: el cosmos entero vibra con reglas de sincronización estricta.</p>
     </div>
 
-    <!-- BLOQUE DEL COLECTIVO DE INVESTIGACIÓN: JULIÁN SOLER & ARTHUR VANCE -->
     <div class="story-block" style="border-color: var(--gold-accent);">
       <h3>Dirección & Desarrollo del Laboratorio</h3>
       <p>
@@ -519,7 +513,6 @@
       <p>El sonido es física; su diferenciación personal responde a leyes de oscilación y modulación espectral.</p>
     </div>
 
-    <!-- OSCILOSCOPIO ANIMADO EN CANVAS -->
     <div style="background:#050811; border:1px solid rgba(0,242,254,0.25); border-radius:18px; padding:24px 20px; text-align:center; margin-bottom:35px;">
       <canvas id="harmonicCanvas" width="700" height="200" style="width:100%; max-width:700px; display:block; margin:0 auto;"></canvas>
       <p style="color:#94a3b8; font-size:0.85rem; margin-top:12px; font-family:monospace;">Simulación en vivo: Modulación de Fase Armónica Φ (7.83 Hz portadora)</p>
@@ -620,7 +613,6 @@
       <div style="font-size: 2.5rem; font-family: 'Cinzel', serif; font-weight: 700; color: #fff; margin-bottom: 5px;">$19.00 USD</div>
       <p style="color: var(--gold-accent); font-size: 0.9rem; margin-bottom: 25px;">Cálculo paramétrico único • Entrega digital en 24 a 48 h</p>
 
-      <!-- Botón de compra oficial de Stripe -->
       <div class="stripe-button-wrapper">
         <stripe-buy-button
           buy-button-id="buy_btn_1UECOpPAMQXjVcON7yxORFhi"
@@ -658,10 +650,14 @@
         activeBtn.classList.add('active');
       }
 
+      if (tabId === 'ejemplos') {
+        setTimeout(resizeAllVisualizers, 80);
+      }
+
       window.scrollTo({ top: 120, behavior: 'smooth' });
     }
 
-    // 1. Ondas fluidas en el encabezado
+    // 1. Ondas de encabezado
     const hCanvas = document.getElementById('headerWaveCanvas');
     if (hCanvas) {
       const hCtx = hCanvas.getContext('2d');
@@ -749,128 +745,127 @@
       drawWave();
     }
 
-    // 3. Visualizadores en Vivo con Web Audio API para cada pista
-    let audioCtx = null;
-    const visualizerMap = new Map();
-
-    function initAudioContext() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-    }
+    // 3. Sistema de Visualización Reactiva
+    const visualizerControllers = [];
 
     function setupVisualizers() {
       const audioElements = document.querySelectorAll('audio[data-viz]');
-      
-      audioElements.forEach(audio => {
+
+      audioElements.forEach((audio, index) => {
         const canvasId = audio.getAttribute('data-viz');
         const vCanvas = document.getElementById(canvasId);
         if (!vCanvas) return;
-        
         const vCtx = vCanvas.getContext('2d');
 
-        function resizeViz() {
-          vCanvas.width = vCanvas.offsetWidth;
-          vCanvas.height = vCanvas.offsetHeight;
-        }
-        window.addEventListener('resize', resizeViz);
-        resizeViz();
+        const controller = {
+          audio: audio,
+          canvas: vCanvas,
+          ctx: vCtx,
+          phase: index * 1.5,
+          speed: 0.08 + (index * 0.02),
+          animId: null
+        };
 
-        // Dibuja línea de reposo inicial
-        function drawIdleLine() {
-          vCtx.clearRect(0, 0, vCanvas.width, vCanvas.height);
-          vCtx.beginPath();
-          vCtx.strokeStyle = "rgba(0, 242, 254, 0.25)";
-          vCtx.lineWidth = 1.5;
-          vCtx.moveTo(0, vCanvas.height / 2);
-          vCtx.lineTo(vCanvas.width, vCanvas.height / 2);
-          vCtx.stroke();
+        function resize() {
+          const parent = vCanvas.parentElement;
+          if (parent && parent.offsetWidth > 0) {
+            vCanvas.width = parent.offsetWidth;
+            vCanvas.height = parent.offsetHeight;
+            drawIdle(controller);
+          }
         }
-        drawIdleLine();
 
-        let analyser = null;
-        let dataArray = null;
+        controller.resize = resize;
+        visualizerControllers.push(controller);
 
         audio.addEventListener('play', () => {
-          initAudioContext();
-          
-          // Silenciar otros reproductores
-          audioElements.forEach(otherAudio => {
-            if (otherAudio !== audio && !otherAudio.paused) {
-              otherAudio.pause();
-            }
+          audioElements.forEach(other => {
+            if (other !== audio && !other.paused) other.pause();
           });
-
-          // Conectar nodo de audio la primera vez
-          if (!visualizerMap.has(audio)) {
-            try {
-              const source = audioCtx.createMediaElementSource(audio);
-              analyser = audioCtx.createAnalyser();
-              analyser.fftSize = 128;
-              analyser.smoothingTimeConstant = 0.8;
-              source.connect(analyser);
-              analyser.connect(audioCtx.destination);
-              dataArray = new Uint8Array(analyser.frequencyBinCount);
-              visualizerMap.set(audio, { analyser, dataArray, vCanvas, vCtx });
-            } catch (e) {
-              console.warn("Audio node context note:", e);
-            }
-          }
-
-          renderVisualizer(audio);
+          resize();
+          startAnimation(controller);
         });
 
-        audio.addEventListener('pause', () => {
-          setTimeout(drawIdleLine, 100);
-        });
-
-        audio.addEventListener('ended', () => {
-          setTimeout(drawIdleLine, 100);
-        });
+        audio.addEventListener('pause', () => stopAnimation(controller));
+        audio.addEventListener('ended', () => stopAnimation(controller));
       });
+
+      window.addEventListener('resize', resizeAllVisualizers);
     }
 
-    function renderVisualizer(activeAudio) {
-      const vizData = visualizerMap.get(activeAudio);
-      if (!vizData) return;
+    function resizeAllVisualizers() {
+      visualizerControllers.forEach(ctrl => ctrl.resize());
+    }
 
-      const { analyser, dataArray, vCanvas, vCtx } = vizData;
+    function drawIdle(ctrl) {
+      const { ctx, canvas } = ctrl;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.strokeStyle = "rgba(0, 242, 254, 0.25)";
+      ctx.lineWidth = 1.5;
+      ctx.moveTo(0, canvas.height / 2);
+      ctx.lineTo(canvas.width, canvas.height / 2);
+      ctx.stroke();
+    }
 
-      function renderFrame() {
-        if (activeAudio.paused || activeAudio.ended) {
+    function startAnimation(ctrl) {
+      if (ctrl.animId) cancelAnimationFrame(ctrl.animId);
+
+      function loop() {
+        if (ctrl.audio.paused || ctrl.audio.ended) {
+          drawIdle(ctrl);
           return;
         }
 
-        requestAnimationFrame(renderFrame);
-        analyser.getByteTimeDomainData(dataArray);
+        const { ctx, canvas } = ctrl;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        vCtx.clearRect(0, 0, vCanvas.width, vCanvas.height);
-        vCtx.lineWidth = 2;
-        vCtx.strokeStyle = '#00f2fe';
-        vCtx.shadowBlur = 8;
-        vCtx.shadowColor = '#00f2fe';
-        vCtx.beginPath();
+        // Curva principal (Cian brillante)
+        ctx.beginPath();
+        ctx.strokeStyle = "#00f2fe";
+        ctx.lineWidth = 2.2;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#00f2fe";
 
-        const sliceWidth = vCanvas.width / dataArray.length;
-        let x = 0;
+        const mid = canvas.height / 2;
+        const width = canvas.width;
 
-        for (let i = 0; i < dataArray.length; i++) {
-          const v = dataArray[i] / 128.0;
-          const y = (v * (vCanvas.height / 2));
-
-          if (i === 0) vCtx.moveTo(x, y);
-          else vCtx.lineTo(x, y);
-
-          x += sliceWidth;
+        for (let x = 0; x <= width; x += 3) {
+          const envelope = Math.sin((x / width) * Math.PI); // Envolvente suave en los bordes
+          const y = mid + (Math.sin(x * 0.035 + ctrl.phase) * 14 + Math.cos(x * 0.018 - ctrl.phase * 1.618) * 7) * envelope;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
         }
+        ctx.stroke();
 
-        vCtx.stroke();
+        // Armónico secundario (Dorado sutil)
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(229, 193, 88, 0.4)";
+        ctx.lineWidth = 1.2;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = "#e5c158";
+
+        for (let x = 0; x <= width; x += 4) {
+          const envelope = Math.sin((x / width) * Math.PI);
+          const y = mid + (Math.sin(x * 0.05 - ctrl.phase * 0.7) * 9) * envelope;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        ctrl.phase += ctrl.speed;
+        ctrl.animId = requestAnimationFrame(loop);
       }
 
-      renderFrame();
+      loop();
+    }
+
+    function stopAnimation(ctrl) {
+      if (ctrl.animId) {
+        cancelAnimationFrame(ctrl.animId);
+        ctrl.animId = null;
+      }
+      drawIdle(ctrl);
     }
 
     window.addEventListener('DOMContentLoaded', () => {
