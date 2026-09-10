@@ -46,28 +46,45 @@
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 24px;
+      position: relative;
+      z-index: 2;
     }
 
+    /* Encabezado con soporte para fondo animado de ondas */
     header {
-      padding: 30px 0 15px;
+      position: relative;
+      padding: 45px 0 25px;
       text-align: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       background: rgba(5, 8, 17, 0.95);
+      overflow: hidden;
+    }
+
+    #headerWaveCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.7;
     }
 
     .brand-title {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--cyan-glow);
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
+      text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
     }
 
     .brand-tagline {
       font-size: 0.9rem;
       color: var(--text-muted);
-      margin-top: 4px;
-      letter-spacing: 1px;
+      margin-top: 6px;
+      letter-spacing: 1.5px;
     }
 
     .nav-tabs-wrapper {
@@ -311,8 +328,9 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header con Ondas Fluctuantes en Movimiento -->
   <header>
+    <canvas id="headerWaveCanvas"></canvas>
     <div class="container">
       <div class="brand-title">Astrofirma Sonora</div>
       <div class="brand-tagline">Laboratorio de Geometría Acústica y Resonancia Armónica</div>
@@ -612,7 +630,62 @@
       window.scrollTo({ top: 120, behavior: 'smooth' });
     }
 
-    // Animación continua del Osciloscopio Armónico
+    // Animación 1: Ondas fluidas en el encabezado
+    const hCanvas = document.getElementById('headerWaveCanvas');
+    if (hCanvas) {
+      const hCtx = hCanvas.getContext('2d');
+      let hTime = 0;
+
+      function resizeHeaderCanvas() {
+        hCanvas.width = hCanvas.parentElement.offsetWidth;
+        hCanvas.height = hCanvas.parentElement.offsetHeight;
+      }
+      window.addEventListener('resize', resizeHeaderCanvas);
+      resizeHeaderCanvas();
+
+      function drawHeaderWaves() {
+        hCtx.clearRect(0, 0, hCanvas.width, hCanvas.height);
+        
+        // Capa 1: Cian suave
+        hCtx.beginPath();
+        hCtx.strokeStyle = "rgba(0, 242, 254, 0.18)";
+        hCtx.lineWidth = 1.6;
+        for (let x = 0; x <= hCanvas.width; x += 4) {
+          const y = (hCanvas.height * 0.55) + Math.sin(x * 0.008 + hTime) * 18 + Math.cos(x * 0.015 - hTime * 0.5) * 8;
+          if (x === 0) hCtx.moveTo(x, y);
+          else hCtx.lineTo(x, y);
+        }
+        hCtx.stroke();
+
+        // Capa 2: Dorado etéreo
+        hCtx.beginPath();
+        hCtx.strokeStyle = "rgba(229, 193, 88, 0.12)";
+        hCtx.lineWidth = 1.2;
+        for (let x = 0; x <= hCanvas.width; x += 4) {
+          const y = (hCanvas.height * 0.60) + Math.sin(x * 0.006 - hTime * 0.8) * 22 + Math.sin(x * 0.02 + hTime * 0.4) * 6;
+          if (x === 0) hCtx.moveTo(x, y);
+          else hCtx.lineTo(x, y);
+        }
+        hCtx.stroke();
+
+        // Capa 3: Resonancia profunda (cian sutil)
+        hCtx.beginPath();
+        hCtx.strokeStyle = "rgba(0, 242, 254, 0.08)";
+        hCtx.lineWidth = 1.0;
+        for (let x = 0; x <= hCanvas.width; x += 5) {
+          const y = (hCanvas.height * 0.50) + Math.cos(x * 0.01 + hTime * 0.6) * 15;
+          if (x === 0) hCtx.moveTo(x, y);
+          else hCtx.lineTo(x, y);
+        }
+        hCtx.stroke();
+
+        hTime += 0.018;
+        requestAnimationFrame(drawHeaderWaves);
+      }
+      drawHeaderWaves();
+    }
+
+    // Animación 2: Osciloscopio Armónico
     const canvas = document.getElementById('harmonicCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
