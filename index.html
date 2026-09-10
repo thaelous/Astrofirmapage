@@ -316,7 +316,7 @@
       outline: none;
     }
 
-    /* Estilos del Caso de Estudio */
+    /* Caso de Estudio */
     .case-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -661,7 +661,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 5: NUEVA PESTAÑA CASO DE ESTUDIO JULIÁN SOLER -->
+  <!-- SECCIÓN 5: CASO DE ESTUDIO JULIÁN SOLER -->
   <section id="caso-estudio" class="tab-content container">
     <div class="section-header">
       <h2>Caso de Estudio Nº 001: Calibración Individual</h2>
@@ -670,7 +670,7 @@
 
     <div class="case-container">
       <div class="case-image-wrapper">
-        <img src="img/ASTROJULIAN.jpg" alt="Astrofirma Sonora - Calibración Julián Soler" />
+        <img src="img/caso-julian-soler.jpg" alt="Astrofirma Sonora - Calibración Julián Soler" />
       </div>
       <div class="case-details">
         <span class="case-tag">REGISTRO DE LABORATORIO: COD FSK-AC981</span>
@@ -691,7 +691,7 @@
           <canvas id="viz-julian"></canvas>
         </div>
         <audio id="audio-julian" controls preload="metadata" data-viz="viz-julian" data-type="julian">
-          <source src="audio/julian-soler-master.mp3" type="audio/mpeg">
+          <source src="audio/julian-soler-master.mp3.MP3" type="audio/mpeg">
           Tu navegador no soporta el elemento de audio.
         </audio>
       </div>
@@ -1029,7 +1029,6 @@
           ctx.stroke();
 
         } else if (type === 'julian') {
-          // Visualizador exclusivo: Caso Julián Soler (Interpolación Lagrange & Armónicos Coherentes)
           ctrl.phase += 0.06;
           ctx.beginPath();
           ctx.strokeStyle = "#00f2fe";
