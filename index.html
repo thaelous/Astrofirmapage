@@ -118,25 +118,11 @@
             color: var(--cyan-glow);
         }
 
-        .btn-purchase {
-            display: inline-block;
-            background: linear-gradient(135deg, #00f0ff 0%, #0077ff 100%);
-            color: #030712;
-            font-weight: bold;
-            text-decoration: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .btn-purchase:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.7);
-            background: linear-gradient(135deg, #33f3ff 0%, #3399ff 100%);
+        .buy-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
         .footer {
@@ -173,9 +159,14 @@
             Inversión: <span>$19.00 USD</span>
         </div>
 
-        <a href="https://buy.stripe.com/9B6bJ35GNdfBbD1cp08Ra02" class="btn-purchase" target="_blank" rel="noopener noreferrer">
-            Solicitar Sintonía
-        </a>
+        <!-- Botón de compra incrustado de Stripe -->
+        <div class="buy-button-container">
+            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1UECOpPAMQXjVcON7yxORFhi"
+              publishable-key="pk_live_51UDqlRPAMQXjVcONsLNGbegjUBai3bfew1LkYiRbrUwNir60MB8ZSVLBFmkRqRsKTNqL2PNZ4zlkddDgv4L33jcn00BJEH5Gy3">
+            </stripe-buy-button>
+        </div>
 
         <div class="footer">
             «La vibración es el lenguaje; las matemáticas son la estructura.»
