@@ -47,7 +47,6 @@
       padding: 0 24px;
     }
 
-    /* Header & Branding */
     header {
       padding: 30px 0 15px;
       text-align: center;
@@ -70,7 +69,6 @@
       letter-spacing: 1px;
     }
 
-    /* Tab Navigation */
     .nav-tabs-wrapper {
       position: sticky;
       top: 0;
@@ -113,7 +111,6 @@
       box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
     }
 
-    /* Tab Panels */
     .tab-content {
       display: none;
       padding: 60px 0 100px;
@@ -129,7 +126,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Typography & Sections */
     .section-header {
       text-align: center;
       margin-bottom: 45px;
@@ -149,7 +145,6 @@
       font-weight: 300;
     }
 
-    /* Cards & Grids */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
@@ -183,7 +178,6 @@
       font-size: 0.95rem;
     }
 
-    /* Narrative Story Layout */
     .story-block {
       background: var(--card-bg);
       border: 1px solid var(--border-glow);
@@ -213,7 +207,6 @@
       color: #e2e8f0;
     }
 
-    /* Special Highlight Box */
     .highlight-card {
       background: linear-gradient(135deg, rgba(0, 242, 254, 0.08) 0%, rgba(229, 193, 88, 0.06) 100%);
       border: 1px solid var(--gold-accent);
@@ -233,7 +226,6 @@
       font-size: 0.98rem;
     }
 
-    /* Math Box */
     .math-pill {
       background: rgba(0, 0, 0, 0.5);
       border: 1px dashed var(--border-glow);
@@ -246,7 +238,6 @@
       font-size: 0.9rem;
     }
 
-    /* Audio Player Card */
     .audio-card {
       background: var(--card-bg);
       border: 1px solid var(--border-glow);
@@ -291,7 +282,6 @@
       outline: none;
     }
 
-    /* Button Styling */
     .btn {
       display: inline-block;
       padding: 14px 32px;
@@ -316,7 +306,6 @@
       transform: translateY(-2px);
     }
 
-    /* Disclaimer box */
     .disclaimer-box {
       margin-top: 40px;
       padding: 20px 25px;
@@ -367,14 +356,64 @@
       <p>Una traducción acústica rigurosa donde las coordenadas temporales y el lenguaje consciente se unifican mediante proporciones armónicas.</p>
     </div>
 
+    <!-- GRÁFICO VECTORIAL SCHUMANN (PUNTO 1) -->
+    <div style="display:flex; justify-content:center; align-items:center; background:#050811; padding:30px 20px; border-radius:18px; border:1px solid rgba(0,242,254,0.2); margin-bottom:35px;">
+      <svg viewBox="0 0 800 450" width="100%" height="100%" style="max-width:750px;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <radialGradient id="earthGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#0a2540" />
+            <stop offset="70%" stop-color="#051329" />
+            <stop offset="100%" stop-color="#020617" />
+          </radialGradient>
+          <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.1" />
+            <stop offset="50%" stop-color="#00f2fe" stop-opacity="0.8" />
+            <stop offset="100%" stop-color="#e5c158" stop-opacity="0.2" />
+          </linearGradient>
+        </defs>
+
+        <circle cx="120" cy="80" r="1.5" fill="#ffffff" opacity="0.4" />
+        <circle cx="680" cy="90" r="1" fill="#00f2fe" opacity="0.6" />
+        <circle cx="220" cy="380" r="1.2" fill="#ffffff" opacity="0.3" />
+        <circle cx="710" cy="340" r="1.8" fill="#e5c158" opacity="0.5" />
+        <circle cx="90" cy="240" r="1" fill="#ffffff" opacity="0.5" />
+
+        <ellipse cx="400" cy="225" rx="310" ry="110" fill="none" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4 8" opacity="0.35" transform="rotate(-15 400 225)" />
+        <ellipse cx="400" cy="225" rx="260" ry="85" fill="none" stroke="#e5c158" stroke-width="1.2" opacity="0.45" transform="rotate(12 400 225)" />
+        <ellipse cx="400" cy="225" rx="210" ry="60" fill="none" stroke="#00f2fe" stroke-width="1.8" filter="url(#glow)" opacity="0.75" transform="rotate(-5 400 225)" />
+
+        <circle cx="400" cy="225" r="95" fill="url(#earthGrad)" stroke="#00f2fe" stroke-width="1.5" filter="url(#glow)" />
+        <ellipse cx="400" cy="225" rx="95" ry="32" fill="none" stroke="rgba(0,242,254,0.25)" stroke-width="1" />
+        <ellipse cx="400" cy="225" rx="95" ry="65" fill="none" stroke="rgba(0,242,254,0.15)" stroke-width="1" />
+        <line x1="400" y1="130" x2="400" y2="320" stroke="rgba(229,193,88,0.3)" stroke-width="1" stroke-dasharray="2 4" />
+
+        <path d="M 120 225 Q 190 140, 260 225 T 400 225 T 540 225 T 680 225" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" filter="url(#glow)" />
+
+        <circle cx="260" cy="225" r="4" fill="#00f2fe" filter="url(#glow)" />
+        <circle cx="400" cy="225" r="5" fill="#e5c158" filter="url(#glow)" />
+        <circle cx="540" cy="225" r="4" fill="#00f2fe" filter="url(#glow)" />
+
+        <text x="235" y="255" fill="#94a3b8" font-family="'Plus Jakarta Sans', monospace" font-size="11">λ₁ = 7.83 Hz</text>
+        <text x="515" y="255" fill="#e5c158" font-family="'Plus Jakarta Sans', monospace" font-size="11">Φ = 1.618</text>
+        <text x="355" y="115" fill="#00f2fe" font-family="'Cinzel', serif" font-size="12" letter-spacing="2">CAVIDAD RESONANTE</text>
+      </svg>
+    </div>
+
     <!-- BLOQUE DE SINGULARIDAD MATEMÁTICA / MÍSTICA -->
     <div class="highlight-card">
       <h3>El Principio de Singularidad Vibratoria</h3>
       <p>
-        No existen dos seres humanos bajo las mismas coordenadas cósmicas ni con el mismo peso de intención. Aunque dos personas compartan exactamente el mismo decreto (por ejemplo, una búsqueda de serenidad o enfoque), <strong>su firma sonora será completamente irrepetible</strong>.
+        No existen dos seres humanos bajo las mismas coordenadas cósmicas ni con el mismo peso de intención. Aunque dos personas compartan exactamente el mismo decreto, <strong>su firma sonora será completamente irrepetible</strong>.
       </p>
       <p style="margin-top: 10px;">
-        La vibración gráfica y fonética de tu nombre actúa como un <em>modulador espectral continuo</em> que altera la microafinación y el timbre, mientras que tu fecha natal ancla el pulso cronométrico de la onda portadora. El resultado no es una melodía genérica, sino una huella matemática única en el tejido sonoro.
+        La vibración fonética de tu nombre modula sutilmente el espectro tímbrico y microtonal, mientras que tu fecha natal sincroniza el pulso cronométrico de la onda portadora. El resultado es una matriz matemática individualizada y única.
       </p>
     </div>
 
@@ -420,8 +459,8 @@
     <div class="story-block">
       <h3>La Convergencia de Sabidurías Ancestrales</h3>
       <p>Para construir el método de traducción, recurrimos al diálogo entre la historia y la acústica aplicada:</p>
-      <p>• <strong>La Escuela Pitagórica:</strong> En el siglo VI a.C., Pitágoras descubrió que la belleza consonante de las cuerdas obedece a razones matemáticas estrictas (1:2, 2:3, 3:4). Planteó que cada cuerpo celeste emite un tono imperceptible al oído ordinario pero constante en la arquitectura del universo.</p>
-      <p>• <strong>Los Forjadores del Himalaya:</strong> Los antiguos cuencos sonoros no se fundían para dar un tono plano, sino mediante combinaciones metálicas planetarias diseñadas para generar <em>batimentos microtonales</em>: suaves ondulaciones que inducen un estado de sincronía y silencio mental.</p>
+      <p>• <strong>La Escuela Pitagórica:</strong> En el siglo VI a.C., Pitágoras descubrió que la belleza consonante de las cuerdas obedece a razones matemáticas estrictas (1:2, 2:3, 3:4). Planteó que cada cuerpo celeste emite un tono constante en la arquitectura del universo.</p>
+      <p>• <strong>Los Forjadores del Himalaya:</strong> Los antiguos cuencos sonoros no se fundían para dar un tono plano, sino mediante combinaciones metálicas diseñadas para generar <em>batimentos microtonales</em> que inducen un estado de sincronía y silencio mental.</p>
       <p>• <strong>La Electrofísica Contemporánea:</strong> El descubrimiento de resonancias globales en la atmósfera terrestre terminó de cerrar el círculo: el cosmos entero vibra con reglas de sincronización estricta.</p>
     </div>
 
@@ -460,6 +499,12 @@
       <p>El sonido es física; su diferenciación personal responde a leyes de oscilación y modulación espectral.</p>
     </div>
 
+    <!-- OSCILOSCOPIO ANIMADO EN CANVAS (PUNTO 2) -->
+    <div style="background:#050811; border:1px solid rgba(0,242,254,0.25); border-radius:18px; padding:24px 20px; text-align:center; margin-bottom:35px;">
+      <canvas id="harmonicCanvas" width="700" height="200" style="width:100%; max-width:700px; display:block; margin:0 auto;"></canvas>
+      <p style="color:#94a3b8; font-size:0.85rem; margin-top:12px; font-family:monospace;">Simulación en vivo: Modulación de Fase Armónica Φ (7.83 Hz portadora)</p>
+    </div>
+
     <div class="grid">
       <div class="card">
         <h3>1. Anclaje Crono-Temporal</h3>
@@ -479,13 +524,6 @@
         <div class="math-pill">S(t) = A<sub>decreto</sub>(t) · sin(2π F<sub>mod</sub> t + Δθ)</div>
       </div>
     </div>
-
-    <div class="highlight-card" style="margin-top: 30px;">
-      <h4 style="color: var(--cyan-glow); margin-bottom: 8px; font-family: 'Cinzel', serif;">¿Por qué cada firma es acústicamente singular?</h4>
-      <p style="font-size: 0.95rem; color: #cbd5e1;">
-        En nuestro motor algorítmico, el decreto define la <em>materia armónica base</em>, pero el nombre y la fecha operan como <em>operadores de micro-desfase y coloratura tímbrica</em>. Por eso, dos personas que decreten "Quiero abundancia" obtendrán matrices con distinta velocidad de batimento, micro-afinación en cents y apertura estereofónica.
-      </p>
-    </div>
   </section>
 
   <!-- SECCIÓN 4: AUDIOS DE EJEMPLO GENERALES -->
@@ -496,7 +534,6 @@
     </div>
 
     <div class="grid">
-      <!-- Ejemplo 1 -->
       <div class="audio-card">
         <div>
           <span class="audio-badge">Arquetipo: Enraizamiento</span>
@@ -509,7 +546,6 @@
         </audio>
       </div>
 
-      <!-- Ejemplo 2 -->
       <div class="audio-card">
         <div>
           <span class="audio-badge">Arquetipo: Claridad</span>
@@ -522,7 +558,6 @@
         </audio>
       </div>
 
-      <!-- Ejemplo 3 -->
       <div class="audio-card">
         <div>
           <span class="audio-badge">Arquetipo: Calma</span>
@@ -571,7 +606,7 @@
     </div>
   </footer>
 
-  <!-- Tab Controller Script -->
+  <!-- Scripts -->
   <script>
     function openTab(tabId) {
       const contents = document.querySelectorAll('.tab-content');
@@ -588,6 +623,42 @@
       }
 
       window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    // Animación continua del Osciloscopio Armónico
+    const canvas = document.getElementById('harmonicCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let t = 0;
+
+      function drawWave() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height / 2);
+        ctx.lineTo(canvas.width, canvas.height / 2);
+        ctx.stroke();
+
+        ctx.strokeStyle = "#00f2fe";
+        ctx.lineWidth = 2.2;
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = "#00f2fe";
+        ctx.beginPath();
+
+        for (let x = 0; x < canvas.width; x++) {
+          const y = canvas.height / 2 + 
+                    Math.sin(x * 0.02 + t) * 38 + 
+                    Math.sin(x * 0.0324 - t * 1.618) * 16;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        t += 0.035;
+        requestAnimationFrame(drawWave);
+      }
+      drawWave();
     }
   </script>
 </body>
