@@ -50,7 +50,7 @@
       z-index: 2;
     }
 
-    /* Encabezado con soporte para fondo animado de ondas */
+    /* Encabezado con ondas animadas */
     header {
       position: relative;
       padding: 45px 0 25px;
@@ -289,8 +289,27 @@
     .audio-card p {
       color: var(--text-muted);
       font-size: 0.9rem;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       flex-grow: 1;
+    }
+
+    /* Caja para el visualizador dinámico */
+    .visualizer-box {
+      width: 100%;
+      height: 48px;
+      background: rgba(3, 7, 18, 0.75);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      display: block;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.05);
+    }
+
+    .visualizer-box canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     audio {
@@ -527,7 +546,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 4: AUDIOS DE EJEMPLO GENERALES -->
+  <!-- SECCIÓN 4: AUDIOS DE EJEMPLO CON VISUALIZADORES REACTIVOS -->
   <section id="ejemplos" class="tab-content container">
     <div class="section-header">
       <h2>Exploraciones Acústicas Colectivas</h2>
@@ -535,37 +554,49 @@
     </div>
 
     <div class="grid">
+      <!-- Pista 1 -->
       <div class="audio-card">
         <div>
           <span class="audio-badge">Arquetipo: Enraizamiento</span>
           <h3>Tierra & Serenidad</h3>
           <p>Estructura gravitatoria suave orientada a despejar la sobreestimulación cotidiana y favorecer el descanso mental al finalizar el día.</p>
         </div>
-        <audio controls preload="none">
+        <div class="visualizer-box">
+          <canvas id="viz-1"></canvas>
+        </div>
+        <audio id="audio-1" controls preload="metadata" data-viz="viz-1">
           <source src="audio/tierra-serenidad.mp3" type="audio/mpeg">
           Tu navegador no soporta el elemento de audio.
         </audio>
       </div>
 
+      <!-- Pista 2 -->
       <div class="audio-card">
         <div>
           <span class="audio-badge">Arquetipo: Claridad</span>
           <h3>Enfoque & Geometría</h3>
           <p>Distribución de ondas de baja fatiga diseñadas para generar un telón de fondo limpio durante horas de trabajo, lectura o análisis.</p>
         </div>
-        <audio controls preload="none">
+        <div class="visualizer-box">
+          <canvas id="viz-2"></canvas>
+        </div>
+        <audio id="audio-2" controls preload="metadata" data-viz="viz-2">
           <source src="audio/enfoque-geometria.mp3" type="audio/mpeg">
           Tu navegador no soporta el elemento de audio.
         </audio>
       </div>
 
+      <!-- Pista 3 -->
       <div class="audio-card">
         <div>
           <span class="audio-badge">Arquetipo: Calma</span>
           <h3>Respiración & Pausa</h3>
           <p>Ondulaciones lentas calculadas en proporciones doradas que invitan a la pausa atenta, la respiración profunda y el reajuste interior.</p>
         </div>
-        <audio controls preload="none">
+        <div class="visualizer-box">
+          <canvas id="viz-3"></canvas>
+        </div>
+        <audio id="audio-3" controls preload="metadata" data-viz="viz-3">
           <source src="audio/respiracion-pausa.mp3" type="audio/mpeg">
           Tu navegador no soporta el elemento de audio.
         </audio>
@@ -630,7 +661,7 @@
       window.scrollTo({ top: 120, behavior: 'smooth' });
     }
 
-    // Animación 1: Ondas fluidas en el encabezado
+    // 1. Ondas fluidas en el encabezado
     const hCanvas = document.getElementById('headerWaveCanvas');
     if (hCanvas) {
       const hCtx = hCanvas.getContext('2d');
@@ -646,7 +677,6 @@
       function drawHeaderWaves() {
         hCtx.clearRect(0, 0, hCanvas.width, hCanvas.height);
         
-        // Capa 1: Cian suave
         hCtx.beginPath();
         hCtx.strokeStyle = "rgba(0, 242, 254, 0.18)";
         hCtx.lineWidth = 1.6;
@@ -657,7 +687,6 @@
         }
         hCtx.stroke();
 
-        // Capa 2: Dorado etéreo
         hCtx.beginPath();
         hCtx.strokeStyle = "rgba(229, 193, 88, 0.12)";
         hCtx.lineWidth = 1.2;
@@ -668,7 +697,6 @@
         }
         hCtx.stroke();
 
-        // Capa 3: Resonancia profunda (cian sutil)
         hCtx.beginPath();
         hCtx.strokeStyle = "rgba(0, 242, 254, 0.08)";
         hCtx.lineWidth = 1.0;
@@ -685,7 +713,7 @@
       drawHeaderWaves();
     }
 
-    // Animación 2: Osciloscopio Armónico
+    // 2. Osciloscopio Armónico
     const canvas = document.getElementById('harmonicCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
@@ -720,6 +748,134 @@
       }
       drawWave();
     }
+
+    // 3. Visualizadores en Vivo con Web Audio API para cada pista
+    let audioCtx = null;
+    const visualizerMap = new Map();
+
+    function initAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function setupVisualizers() {
+      const audioElements = document.querySelectorAll('audio[data-viz]');
+      
+      audioElements.forEach(audio => {
+        const canvasId = audio.getAttribute('data-viz');
+        const vCanvas = document.getElementById(canvasId);
+        if (!vCanvas) return;
+        
+        const vCtx = vCanvas.getContext('2d');
+
+        function resizeViz() {
+          vCanvas.width = vCanvas.offsetWidth;
+          vCanvas.height = vCanvas.offsetHeight;
+        }
+        window.addEventListener('resize', resizeViz);
+        resizeViz();
+
+        // Dibuja línea de reposo inicial
+        function drawIdleLine() {
+          vCtx.clearRect(0, 0, vCanvas.width, vCanvas.height);
+          vCtx.beginPath();
+          vCtx.strokeStyle = "rgba(0, 242, 254, 0.25)";
+          vCtx.lineWidth = 1.5;
+          vCtx.moveTo(0, vCanvas.height / 2);
+          vCtx.lineTo(vCanvas.width, vCanvas.height / 2);
+          vCtx.stroke();
+        }
+        drawIdleLine();
+
+        let analyser = null;
+        let dataArray = null;
+
+        audio.addEventListener('play', () => {
+          initAudioContext();
+          
+          // Silenciar otros reproductores
+          audioElements.forEach(otherAudio => {
+            if (otherAudio !== audio && !otherAudio.paused) {
+              otherAudio.pause();
+            }
+          });
+
+          // Conectar nodo de audio la primera vez
+          if (!visualizerMap.has(audio)) {
+            try {
+              const source = audioCtx.createMediaElementSource(audio);
+              analyser = audioCtx.createAnalyser();
+              analyser.fftSize = 128;
+              analyser.smoothingTimeConstant = 0.8;
+              source.connect(analyser);
+              analyser.connect(audioCtx.destination);
+              dataArray = new Uint8Array(analyser.frequencyBinCount);
+              visualizerMap.set(audio, { analyser, dataArray, vCanvas, vCtx });
+            } catch (e) {
+              console.warn("Audio node context note:", e);
+            }
+          }
+
+          renderVisualizer(audio);
+        });
+
+        audio.addEventListener('pause', () => {
+          setTimeout(drawIdleLine, 100);
+        });
+
+        audio.addEventListener('ended', () => {
+          setTimeout(drawIdleLine, 100);
+        });
+      });
+    }
+
+    function renderVisualizer(activeAudio) {
+      const vizData = visualizerMap.get(activeAudio);
+      if (!vizData) return;
+
+      const { analyser, dataArray, vCanvas, vCtx } = vizData;
+
+      function renderFrame() {
+        if (activeAudio.paused || activeAudio.ended) {
+          return;
+        }
+
+        requestAnimationFrame(renderFrame);
+        analyser.getByteTimeDomainData(dataArray);
+
+        vCtx.clearRect(0, 0, vCanvas.width, vCanvas.height);
+        vCtx.lineWidth = 2;
+        vCtx.strokeStyle = '#00f2fe';
+        vCtx.shadowBlur = 8;
+        vCtx.shadowColor = '#00f2fe';
+        vCtx.beginPath();
+
+        const sliceWidth = vCanvas.width / dataArray.length;
+        let x = 0;
+
+        for (let i = 0; i < dataArray.length; i++) {
+          const v = dataArray[i] / 128.0;
+          const y = (v * (vCanvas.height / 2));
+
+          if (i === 0) vCtx.moveTo(x, y);
+          else vCtx.lineTo(x, y);
+
+          x += sliceWidth;
+        }
+
+        vCtx.stroke();
+      }
+
+      renderFrame();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setupVisualizers();
+    });
   </script>
 </body>
 </html>
