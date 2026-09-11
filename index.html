@@ -138,7 +138,6 @@
     .visualizer-box canvas { width: 100%; height: 100%; display: block; }
     audio { width: 100%; height: 40px; border-radius: 20px; outline: none; }
 
-    /* Estilos de Producto / Paquete Estándar y Premium */
     .case-container {
       display: grid; grid-template-columns: 1fr 1fr; gap: 35px;
       background: var(--card-bg); border: 1px solid var(--border-glow);
@@ -188,7 +187,7 @@
     </div>
   </header>
 
-  <!-- Sticky Tabs Navigation (Sin Precios) -->
+  <!-- Sticky Tabs Navigation -->
   <nav class="nav-tabs-wrapper">
     <div class="container">
       <div class="nav-tabs">
@@ -203,35 +202,108 @@
     </div>
   </nav>
 
-  <!-- SECCIÓN 1 -->
+  <!-- SECCIÓN 1: ¿QUÉ ES UNA ASTROFIRMA? -->
   <section id="concepto" class="tab-content active container">
     <div class="section-header">
       <h2>La Identidad Transformada en Frecuencia</h2>
       <p>Una traducción acústica rigurosa donde las coordenadas temporales y el lenguaje consciente se unifican mediante proporciones armónicas.</p>
     </div>
+
+    <div style="display:flex; justify-content:center; align-items:center; background:#050811; padding:30px 20px; border-radius:18px; border:1px solid rgba(0,242,254,0.2); margin-bottom:35px;">
+      <svg viewBox="0 0 800 450" width="100%" height="100%" style="max-width:750px;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <radialGradient id="earthGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#0a2540" /><stop offset="70%" stop-color="#051329" /><stop offset="100%" stop-color="#020617" />
+          </radialGradient>
+          <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.1" /><stop offset="50%" stop-color="#00f2fe" stop-opacity="0.8" /><stop offset="100%" stop-color="#e5c158" stop-opacity="0.2" />
+          </linearGradient>
+        </defs>
+        <ellipse cx="400" cy="225" rx="310" ry="110" fill="none" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4 8" opacity="0.35" transform="rotate(-15 400 225)" />
+        <ellipse cx="400" cy="225" rx="210" ry="60" fill="none" stroke="#00f2fe" stroke-width="1.8" filter="url(#glow)" opacity="0.75" transform="rotate(-5 400 225)" />
+        <circle cx="400" cy="225" r="95" fill="url(#earthGrad)" stroke="#00f2fe" stroke-width="1.5" filter="url(#glow)" />
+        <path d="M 120 225 Q 190 140, 260 225 T 400 225 T 540 225 T 680 225" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" filter="url(#glow)" />
+        <text x="355" y="115" fill="#00f2fe" font-family="'Cinzel', serif" font-size="12" letter-spacing="2">CAVIDAD RESONANTE</text>
+      </svg>
+    </div>
+
+    <div class="highlight-card">
+      <h3>El Principio de Singularidad Vibratoria</h3>
+      <p>No existen dos seres humanos bajo las mismas coordenadas cósmicas ni con el mismo peso de intención. Aunque dos personas compartan exactamente el mismo decreto, <strong>su firma sonora será completamente irrepetible</strong>.</p>
+    </div>
   </section>
 
-  <!-- SECCIÓN 2 -->
+  <!-- SECCIÓN 2: HISTORIA & CRÓNICA DE ORIGEN -->
   <section id="historia" class="tab-content container">
     <div class="section-header">
       <h2>El Origen: De la Cimática a la Síntesis Digital</h2>
       <p>Cómo la fascinación por los patrones invisibles del sonido dio origen a este proyecto.</p>
     </div>
+    <div class="story-block">
+      <h3>El Encuentro con el Patrón Invisible</h3>
+      <p>La inquietud detrás de Astrofirma Sonora comenzó observando un experimento clásico de cimática: una placa metálica espolvoreada con arena fina sometida a distintas frecuencias audibles...</p>
+    </div>
   </section>
 
-  <!-- SECCIÓN 3 -->
+  <!-- SECCIÓN 3: FUNDAMENTO MATEMÁTICO -->
   <section id="ciencia" class="tab-content container">
     <div class="section-header">
       <h2>Arquitectura Física y Modulación Individual</h2>
       <p>El sonido es física; su diferenciación personal responde a leyes de oscilación y modulación espectral.</p>
     </div>
+    <div style="background:#050811; border:1px solid rgba(0,242,254,0.25); border-radius:18px; padding:24px 20px; text-align:center; margin-bottom:35px;">
+      <canvas id="harmonicCanvas" width="700" height="200" style="width:100%; max-width:700px; display:block; margin:0 auto;"></canvas>
+      <p style="color:#94a3b8; font-size:0.85rem; margin-top:12px; font-family:monospace;">Simulación en vivo: Modulación de Fase Armónica Φ (7.83 Hz portadora)</p>
+    </div>
   </section>
 
-  <!-- SECCIÓN 4 -->
+  <!-- SECCIÓN 4: AUDIOS DE PRUEBA -->
   <section id="ejemplos" class="tab-content container">
     <div class="section-header">
       <h2>Exploraciones Acústicas Colectivas</h2>
       <p>Muestras no personalizadas construidas con decretos arquetípicos universales.</p>
+    </div>
+
+    <div class="grid">
+      <div class="audio-card">
+        <div>
+          <span class="audio-badge">Arquetipo: Enraizamiento</span>
+          <h3>Tierra & Serenidad</h3>
+          <p>Estructura gravitatoria suave orientada a despejar la sobreestimulación cotidiana y favorecer el descanso mental al finalizar el día.</p>
+        </div>
+        <div class="visualizer-box"><canvas id="viz-1"></canvas></div>
+        <audio id="audio-1" controls preload="metadata" data-viz="viz-1" data-type="tierra">
+          <source src="audio/tierra-serenidad.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <div class="audio-card">
+        <div>
+          <span class="audio-badge">Arquetipo: Claridad</span>
+          <h3>Enfoque & Geometría</h3>
+          <p>Distribución de ondas de baja fatiga diseñadas para generar un telón de fondo limpio durante horas de trabajo, lectura o análisis.</p>
+        </div>
+        <div class="visualizer-box"><canvas id="viz-2"></canvas></div>
+        <audio id="audio-2" controls preload="metadata" data-viz="viz-2" data-type="enfoque">
+          <source src="audio/enfoque-geometria.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <div class="audio-card">
+        <div>
+          <span class="audio-badge">Arquetipo: Calma</span>
+          <h3>Respiración & Pausa</h3>
+          <p>Ondulaciones lentas calculadas en proporciones doradas que invitan a la pausa atenta y el reajuste interior.</p>
+        </div>
+        <div class="visualizer-box"><canvas id="viz-3"></canvas></div>
+        <audio id="audio-3" controls preload="metadata" data-viz="viz-3" data-type="calma">
+          <source src="audio/respiracion-pausa.mp3" type="audio/mpeg">
+        </audio>
+      </div>
     </div>
   </section>
 
@@ -285,14 +357,14 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 6: PAQUETE PREMIUM (Con Video Bucle y Memoria en PDF) -->
+  <!-- SECCIÓN 6: PAQUETE PREMIUM -->
   <section id="paquete-premium" class="tab-content container">
     <div class="section-header">
       <h2>Paquete Premium: Memoria Técnica & Calibración Completa</h2>
       <p>Para quienes buscan el respaldo documental formal, la validación científica en PDF y la experiencia visual cinemática en bucle.</p>
     </div>
 
-    <!-- Muestra 1: Video en Bucle -->
+    <!-- Muestra 1: Video en bucle -->
     <div class="case-container">
       <div class="case-image-wrapper">
         <video autoplay muted loop playsinline>
@@ -311,7 +383,7 @@
       </div>
     </div>
 
-    <!-- Muestra 2: Memoria Técnica PDF (Imagen de referencia) -->
+    <!-- Muestra 2: Imagen de referencia de la Memoria Técnica en PDF -->
     <div class="case-container">
       <div class="case-details">
         <span class="case-tag">ENTREGABLE PREMIUM: MEMORIA TÉCNICA PDF</span>
@@ -379,13 +451,61 @@
       const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
       if (activeBtn) activeBtn.classList.add('active');
 
-      if (tabId === 'paquete-estandar' || tabId === 'ejemplos') {
+      if (tabId === 'paquete-estandar' || tabId === 'ejemplos' || tabId === 'ciencia') {
         setTimeout(resizeAllVisualizers, 80);
       }
       window.scrollTo({ top: 120, behavior: 'smooth' });
     }
 
-    // Sistema de visualización reactiva corregido
+    // 1. Ondas de encabezado
+    const hCanvas = document.getElementById('headerWaveCanvas');
+    if (hCanvas) {
+      const hCtx = hCanvas.getContext('2d');
+      let hTime = 0;
+      function resizeHeaderCanvas() {
+        hCanvas.width = hCanvas.parentElement.offsetWidth;
+        hCanvas.height = hCanvas.parentElement.offsetHeight;
+      }
+      window.addEventListener('resize', resizeHeaderCanvas);
+      resizeHeaderCanvas();
+      function drawHeaderWaves() {
+        hCtx.clearRect(0, 0, hCanvas.width, hCanvas.height);
+        hCtx.beginPath();
+        hCtx.strokeStyle = "rgba(0, 242, 254, 0.18)";
+        hCtx.lineWidth = 1.6;
+        for (let x = 0; x <= hCanvas.width; x += 4) {
+          const y = (hCanvas.height * 0.55) + Math.sin(x * 0.008 + hTime) * 18 + Math.cos(x * 0.015 - hTime * 0.5) * 8;
+          if (x === 0) hCtx.moveTo(x, y); else hCtx.lineTo(x, y);
+        }
+        hCtx.stroke();
+        hTime += 0.018;
+        requestAnimationFrame(drawHeaderWaves);
+      }
+      drawHeaderWaves();
+    }
+
+    // 2. Osciloscopio Matemático
+    const harmonicCanvas = document.getElementById('harmonicCanvas');
+    if (harmonicCanvas) {
+      const ctx = harmonicCanvas.getContext('2d');
+      let t = 0;
+      function drawWave() {
+        ctx.clearRect(0, 0, harmonicCanvas.width, harmonicCanvas.height);
+        ctx.strokeStyle = "#00f2fe";
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        for (let x = 0; x < harmonicCanvas.width; x++) {
+          const y = harmonicCanvas.height / 2 + Math.sin(x * 0.02 + t) * 38 + Math.sin(x * 0.0324 - t * 1.618) * 16;
+          if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        t += 0.035;
+        requestAnimationFrame(drawWave);
+      }
+      drawWave();
+    }
+
+    // 3. Sistema de Visualización Reactiva
     const visualizerControllers = [];
     function setupVisualizers() {
       const audioElements = document.querySelectorAll('audio[data-viz]');
@@ -416,6 +536,10 @@
         audio.addEventListener('ended', () => stopAnimation(controller));
       });
       window.addEventListener('resize', () => visualizerControllers.forEach(c => c.resize()));
+    }
+
+    function resizeAllVisualizers() {
+      visualizerControllers.forEach(ctrl => ctrl.resize());
     }
 
     function drawIdle(ctrl) {
