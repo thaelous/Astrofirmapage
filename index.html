@@ -191,9 +191,9 @@
   <nav class="nav-tabs-wrapper">
     <div class="container">
       <div class="nav-tabs">
-        <button class="tab-btn active" onclick="openTab('concepto')">1. ¿Qué es?</button>
-        <button class="tab-btn" onclick="openTab('historia')">2. Origen</button>
-        <button class="tab-btn" onclick="openTab('ciencia')">3. Matemáticas</button>
+        <button class="tab-btn active" onclick="openTab('concepto')">1. ¿Qué es una Astrofirma?</button>
+        <button class="tab-btn" onclick="openTab('historia')">2. Crónica & Origen</button>
+        <button class="tab-btn" onclick="openTab('ciencia')">3. Fundamento Matemático</button>
         <button class="tab-btn" onclick="openTab('ejemplos')">4. Audios de Prueba</button>
         <button class="tab-btn" onclick="openTab('paquete-estandar')">5. Paquete Estándar</button>
         <button class="tab-btn" onclick="openTab('paquete-premium')">6. Paquete Premium</button>
@@ -223,10 +223,24 @@
             <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.1" /><stop offset="50%" stop-color="#00f2fe" stop-opacity="0.8" /><stop offset="100%" stop-color="#e5c158" stop-opacity="0.2" />
           </linearGradient>
         </defs>
+        <circle cx="120" cy="80" r="1.5" fill="#ffffff" opacity="0.4" />
+        <circle cx="680" cy="90" r="1" fill="#00f2fe" opacity="0.6" />
+        <circle cx="220" cy="380" r="1.2" fill="#ffffff" opacity="0.3" />
+        <circle cx="710" cy="340" r="1.8" fill="#e5c158" opacity="0.5" />
+        <circle cx="90" cy="240" r="1" fill="#ffffff" opacity="0.5" />
         <ellipse cx="400" cy="225" rx="310" ry="110" fill="none" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4 8" opacity="0.35" transform="rotate(-15 400 225)" />
+        <ellipse cx="400" cy="225" rx="260" ry="85" fill="none" stroke="#e5c158" stroke-width="1.2" opacity="0.45" transform="rotate(12 400 225)" />
         <ellipse cx="400" cy="225" rx="210" ry="60" fill="none" stroke="#00f2fe" stroke-width="1.8" filter="url(#glow)" opacity="0.75" transform="rotate(-5 400 225)" />
         <circle cx="400" cy="225" r="95" fill="url(#earthGrad)" stroke="#00f2fe" stroke-width="1.5" filter="url(#glow)" />
+        <ellipse cx="400" cy="225" rx="95" ry="32" fill="none" stroke="rgba(0,242,254,0.25)" stroke-width="1" />
+        <ellipse cx="400" cy="225" rx="95" ry="65" fill="none" stroke="rgba(0,242,254,0.15)" stroke-width="1" />
+        <line x1="400" y1="130" x2="400" y2="320" stroke="rgba(229,193,88,0.3)" stroke-width="1" stroke-dasharray="2 4" />
         <path d="M 120 225 Q 190 140, 260 225 T 400 225 T 540 225 T 680 225" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" filter="url(#glow)" />
+        <circle cx="260" cy="225" r="4" fill="#00f2fe" filter="url(#glow)" />
+        <circle cx="400" cy="225" r="5" fill="#e5c158" filter="url(#glow)" />
+        <circle cx="540" cy="225" r="4" fill="#00f2fe" filter="url(#glow)" />
+        <text x="235" y="255" fill="#94a3b8" font-family="'Plus Jakarta Sans', monospace" font-size="11">λ₁ = 7.83 Hz</text>
+        <text x="515" y="255" fill="#e5c158" font-family="'Plus Jakarta Sans', monospace" font-size="11">Φ = 1.618</text>
         <text x="355" y="115" fill="#00f2fe" font-family="'Cinzel', serif" font-size="12" letter-spacing="2">CAVIDAD RESONANTE</text>
       </svg>
     </div>
@@ -243,9 +257,11 @@
       <h2>El Origen: De la Cimática a la Síntesis Digital</h2>
       <p>Cómo la fascinación por los patrones invisibles del sonido dio origen a este proyecto.</p>
     </div>
+
     <div class="story-block">
       <h3>El Encuentro con el Patrón Invisible</h3>
-      <p>La inquietud detrás de Astrofirma Sonora comenzó observando un experimento clásico de cimática: una placa metálica espolvoreada con arena fina sometida a distintas frecuencias audibles...</p>
+      <p>La inquietud detrás de Astrofirma Sonora comenzó observando un experimento clásico de cimática: una placa metálica espolvoreada con arena fina sometida a distintas frecuencias audibles.</p>
+      <div class="quote-highlight">«La forma es el resultado visible de una vibración que aún no hemos terminado de escuchar.»</div>
     </div>
   </section>
 
@@ -255,9 +271,28 @@
       <h2>Arquitectura Física y Modulación Individual</h2>
       <p>El sonido es física; su diferenciación personal responde a leyes de oscilación y modulación espectral.</p>
     </div>
+
     <div style="background:#050811; border:1px solid rgba(0,242,254,0.25); border-radius:18px; padding:24px 20px; text-align:center; margin-bottom:35px;">
       <canvas id="harmonicCanvas" width="700" height="200" style="width:100%; max-width:700px; display:block; margin:0 auto;"></canvas>
       <p style="color:#94a3b8; font-size:0.85rem; margin-top:12px; font-family:monospace;">Simulación en vivo: Modulación de Fase Armónica Φ (7.83 Hz portadora)</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>1. Anclaje Crono-Temporal</h3>
+        <p>La fecha de nacimiento determina el ciclo fundamental de la pieza. Actúa como el reloj portador que sincroniza las frecuencias base con los ritmos electromagnéticos de fondo.</p>
+        <div class="math-pill">F<sub>base</sub> = (T<sub>natal</sub> × Φ) mod F<sub>ref</sub></div>
+      </div>
+      <div class="card">
+        <h3>2. Modulación por Resonancia Nominal</h3>
+        <p>Cada consonante y vocal de tu nombre introduce variaciones de fase y microafinación específica.</p>
+        <div class="math-pill">Δθ(n) = ∑ (Cód<sub>i</sub> × W<sub>i</sub>) · 2π</div>
+      </div>
+      <div class="card">
+        <h3>3. Envolvente del Decreto</h3>
+        <p>El propósito consciente define los tiempos de respuesta, la caída armónica y la amplitud dinámica.</p>
+        <div class="math-pill">S(t) = A<sub>decreto</sub>(t) · sin(2π F<sub>mod</sub> t + Δθ)</div>
+      </div>
     </div>
   </section>
 
@@ -285,7 +320,7 @@
         <div>
           <span class="audio-badge">Arquetipo: Claridad</span>
           <h3>Enfoque & Geometría</h3>
-          <p>Distribución de ondas de baja fatiga diseñadas para generar un telón de fondo limpio durante horas de trabajo, lectura o análisis.</p>
+          <p>Distribución de ondas de baja fatiga diseñadas para generar un telón de fondo limpio durante horas de trabajo o lectura.</p>
         </div>
         <div class="visualizer-box"><canvas id="viz-2"></canvas></div>
         <audio id="audio-2" controls preload="metadata" data-viz="viz-2" data-type="enfoque">
